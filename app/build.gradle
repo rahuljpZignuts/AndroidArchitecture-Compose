@@ -49,6 +49,11 @@ android {
     }
     buildFeatures {
         dataBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = buildOptions.composeVersion
     }
 
     compileOptions {
@@ -114,6 +119,21 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}"
 
+    def composeBom = platform('androidx.compose:compose-bom:2023.04.01')
+    implementation composeBom
+    androidTestImplementation composeBom
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    debugImplementation "androidx.compose.ui:ui-tooling"
+    implementation "androidx.compose.material:material-icons-core"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.compose.material3:material3-window-size-class"
+    implementation "androidx.activity:activity-compose:1.6.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+    implementation "androidx.compose.runtime:runtime-livedata"
+    implementation "androidx.compose.runtime:runtime-rxjava2"
+
     kapt "androidx.room:room-compiler:${versions.room}"
     kapt "com.github.bumptech.glide:compiler:${versions.glide}"
     kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
@@ -124,6 +144,8 @@ dependencies {
 
     androidTestImplementation "androidx.test.espresso:espresso-core:${testVersions.espresso}"
     androidTestImplementation "androidx.test.ext:junit:${testVersions.testJUnit}"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4"
+    debugImplementation "androidx.compose.ui:ui-test-manifest"
 }
 
 // Allow references to generated code
