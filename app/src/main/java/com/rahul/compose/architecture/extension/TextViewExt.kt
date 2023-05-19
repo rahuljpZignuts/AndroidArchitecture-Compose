@@ -13,12 +13,10 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
-import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.core.widget.TextViewCompat
-import com.rahul.compose.architecture.R
 
 fun TextView.setTextWithVisibility(content: String?) {
     text = content
@@ -90,16 +88,6 @@ fun TextView.setHtmlText(
         if (setVisibility)
             this.isVisible = htmlText.isNotEmpty()
     }
-}
-
-fun TextView.setEmphasizedText(
-    text: String,
-    textToEmphasize: String,
-    @AttrRes spanColor: Int,
-    @AttrRes emphasisStyle: Int = R.attr.textAppearanceHeadingH4Bold,
-) {
-    val spannableString = text.emphasizeText(context, textToEmphasize, spanColor, emphasisStyle)
-    this.setText(spannableString, TextView.BufferType.SPANNABLE)
 }
 
 fun TextView.setCompatDrawableTintList(color: Int) {
