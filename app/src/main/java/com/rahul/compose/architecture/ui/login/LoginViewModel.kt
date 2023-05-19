@@ -1,4 +1,4 @@
-package com.rahul.compose.architecture.ui
+package com.rahul.compose.architecture.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
