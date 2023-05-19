@@ -3,6 +3,7 @@ package com.rahul.compose.architecture.ui.login
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.rahul.compose.architecture.data.model.Public
 import com.rahul.compose.architecture.data.proto.Authentication
 import com.rahul.compose.architecture.theme.ComposeArchitectureTheme
+import com.rahul.compose.architecture.theme.h4Bold
 
 @Composable
 fun LoginScreen(
@@ -33,6 +35,7 @@ fun LoginScreen(
                     modifier = Modifier.clickable {
                         viewModel.getEntries()
                     },
+                    style = MaterialTheme.typography.h4Bold
                 )
                 entries?.let { public ->
                     LazyColumn {
