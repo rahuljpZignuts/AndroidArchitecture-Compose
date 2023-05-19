@@ -9,4 +9,8 @@
     <string name="hours_ago">{0} hours ago</string>
     <string name="mins_ago">{0} minutes ago</string>
     <string name="just_now">Just Now</string>
+    <string name="splash_screen">Splash Screen</string>
+    <string name="login_screen">Login Screen</string>
+    <string name="vertical_screen">Vertical Screen</string>
+    <string name="grid_screen">Grid Screen</string>
 </resources>

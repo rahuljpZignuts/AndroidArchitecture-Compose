@@ -115,9 +115,17 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended"
     implementation "androidx.compose.material3:material3-window-size-class"
     implementation "androidx.activity:activity-compose:${versions.activityCompose}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.viewmodelCompose}"
     implementation "androidx.compose.runtime:runtime-livedata"
     implementation "androidx.compose.runtime:runtime-rxjava2"
+
+    // Accompanist
+    implementation "com.google.accompanist:accompanist-navigation-animation:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-navigation-material:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-swiperefresh:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-placeholder-material:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-pager:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-permissions:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:${versions.accompanist}"
 
     kapt "androidx.room:room-compiler:${versions.room}"
     kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"

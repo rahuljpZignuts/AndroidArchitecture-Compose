@@ -11,12 +11,13 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.rahul.compose.architecture.data.enums.RequestState
 
 @Composable
 fun StateComposable(
     modifier: Modifier = Modifier,
-    requestState: LiveData<RequestState>,
+    requestState: LiveData<RequestState> = MutableLiveData(),
     content: @Composable () -> Unit
 ) {
     val apiState: RequestState? by requestState.observeAsState()
@@ -36,7 +37,11 @@ private fun EmptyStateComposable() {
 private fun InProgressComposable(modifier: Modifier, content: @Composable () -> Unit) {
     Box(modifier = modifier) {
         content()
-        Box(modifier = Modifier.fillMaxSize().clickable(enabled = false){}) {
+        Box(
+            modifier = Modifier
+            .fillMaxSize()
+            .clickable(enabled = false) {}
+        ) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }

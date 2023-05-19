@@ -2,7 +2,7 @@ package com.rahul.compose.architecture.ui.login
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -12,20 +12,24 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.rahul.compose.architecture.R
 import com.rahul.compose.architecture.data.model.Public
 import com.rahul.compose.architecture.data.proto.Authentication
 import com.rahul.compose.architecture.theme.ComposeArchitectureTheme
+import com.rahul.compose.architecture.theme.bodyStandardMedium
 import com.rahul.compose.architecture.theme.h4Bold
 import com.rahul.compose.architecture.ui.widget.StateComposable
 import com.rahul.compose.architecture.ui.widget.UIEventComposable
 
 @Composable
 fun LoginScreen(
+    id: Int,
+    name: String,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(key1 = "login") {
+    LaunchedEffect(key1 = stringResource(id = R.string.login_screen)) {
         viewModel.login()
     }
 
@@ -38,9 +42,13 @@ fun LoginScreen(
             val scrollState = rememberLazyListState()
             StateComposable(
                 requestState = viewModel.requestState,
-                modifier = Modifier.size(400.dp,200.dp)
+                modifier = Modifier.fillMaxSize()
             ) {
                 Column {
+                    Text(
+                        text = "$id -- $name",
+                        style = MaterialTheme.typography.bodyStandardMedium
+                    )
                     Text(
                         text = token?.accessToken.toString(),
                         modifier = Modifier.clickable {

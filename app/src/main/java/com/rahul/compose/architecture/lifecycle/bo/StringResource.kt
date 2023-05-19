@@ -1,7 +1,8 @@
 package com.rahul.compose.architecture.lifecycle.bo
 
-import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import com.rahul.compose.architecture.R
 import com.rahul.compose.architecture.extension.getArgumentString
 import java.text.MessageFormat
@@ -49,11 +50,12 @@ data class RawStringResource internal constructor(val rawText: String) :
 /**
  * Helper method to get string text from [StringResource] easily.
  *
- * @param context reference to localized context.
  * @param formatArgs additional string arguments (if any).
  * @return formatted localized string from the provided resource.
  */
-fun StringResource.getText(context: Context, vararg formatArgs: Any? = args): String {
+@Composable
+fun StringResource.getText(vararg formatArgs: Any? = args): String {
+    val context = LocalContext.current
     return when (this) {
         is AndroidStringResource -> context.getArgumentString(resId, *formatArgs)
         is RawStringResource -> if (rawText.isBlank() || formatArgs.isEmpty()) rawText

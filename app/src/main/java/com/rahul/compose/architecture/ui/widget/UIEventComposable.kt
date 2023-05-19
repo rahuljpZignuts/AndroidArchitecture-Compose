@@ -1,6 +1,5 @@
 package com.rahul.compose.architecture.ui.widget
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
@@ -31,15 +30,14 @@ fun UIEventComposable(
     when (val type = event?.getEvent()) {
         is UIEventType.Alert -> show.value = true
         is UIEventType.Navigate -> onNavigationEventReceived(type)
-        is UIEventType.Toast -> showToast(type, LocalContext.current)
+        is UIEventType.Toast -> ShowToast(type)
         else -> {}
     }
     Surface {
         if (show.value) {
-            showAlert(
+            ShowAlert(
                 show = show,
-                event = (event?.peekEvent() as UIEventType.Alert),
-                context = LocalContext.current
+                event = (event?.peekEvent() as UIEventType.Alert)
             )
         }
         content()
@@ -47,22 +45,23 @@ fun UIEventComposable(
 }
 
 @Composable
-private fun showAlert(show: MutableState<Boolean>, event: UIEventType.Alert, context: Context) {
+private fun ShowAlert(show: MutableState<Boolean>, event: UIEventType.Alert) {
     AlertDialog(
         onDismissRequest = { show.value = false },
         confirmButton = {
             TextButton(onClick = { show.value = false })
-            { event.positiveButtonText?.getText(context)?.let { Text(text = it) } }
+            { event.positiveButtonText?.getText()?.let { Text(text = it) } }
         },
         dismissButton = {
             TextButton(onClick = { show.value = false })
-            { event.negativeButtonText?.getText(context)?.let { Text(text = it) } }
+            { event.negativeButtonText?.getText()?.let { Text(text = it) } }
         },
-        title = { event.title?.getText(context)?.let { Text(text = it) } },
-        text = { event.message?.getText(context)?.let { Text(text = it) } }
+        title = { event.title?.getText()?.let { Text(text = it) } },
+        text = { event.message?.getText()?.let { Text(text = it) } }
     )
 }
 
-private fun showToast(event: UIEventType.Toast, context: Context) {
-    Toast.makeText(context, event.message?.getText(context), Toast.LENGTH_SHORT).show()
+@Composable
+private fun ShowToast(event: UIEventType.Toast) {
+    Toast.makeText(LocalContext.current, event.message?.getText(), Toast.LENGTH_SHORT).show()
 }
