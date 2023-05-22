@@ -24,8 +24,8 @@ buildscript {
             compileSdkVersion       : 33,
             minSdkVersion           : 21,
             targetSdkVersion        : 33,
-            compileOptionsVersion   : JavaVersion.VERSION_1_8,
-            jvmVersion              : JavaVersion.VERSION_1_8,
+            compileOptionsVersion   : JavaVersion.VERSION_11,
+            jvmVersion              : JavaVersion.VERSION_11,
             composeVersion          : "1.4.1"
     ]
     ext.buildConfig = [
@@ -35,7 +35,7 @@ buildscript {
     ]
     ext.plugin = [
             "crashlytics"           : "2.9.2",
-            "gradle"                : '7.4.1',
+            "gradle"                : '8.0.1',
             "hilt"                  : "2.44",
             "kotlin"                : "1.8.0",
             "protobuf"              : "3.21.7",
